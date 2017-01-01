@@ -43,7 +43,7 @@ Design docs are available in project git repo. Please refer the same.
 Describe and show how to run the tests with code examples.
 
 ## Contributors
-`@aloe` library was built by [Arun](mailto: sna.arun@gmail.com). 
+`@aloe` library was built by [Arun Subramonian Namboothiri](mailto: sna.arun@gmail.com). 
 
 ## Bugs
 All bugs should be reported to [Bug Tracker](mailto:sna.arun@gmail.com)
