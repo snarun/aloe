@@ -1,0 +1,5 @@
+QuickStart is built by Arun Subramonian Namboothiri based on Angular Library for Enterprise (running on Angular 2.4.1). 
+
+The codebase will be updated continuously based on the technical changes provided by Google on Application development using Angular.
+
+If you'd like to be a part of this programme, reach out to me at sna.arun@gmail.com.
