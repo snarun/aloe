@@ -1,5 +1,4 @@
 /// <reference path="../../../node_modules/rxjs/Rx.d.ts" />
-import { Store } from "../store/app.store";
 import { BehaviorSubject } from 'rxjs/Rx';
 export declare type DefaultState = () => {};
 export declare type State = DefaultState | {};
@@ -24,26 +23,6 @@ export declare abstract class ViewState {
      */
     protected setState(props: any): void;
     /**
-     * An abstract method for handling store changed event.
-     * View should get in touch with store for changed information.
-     *
-     * @protected
-     * @abstract
-     *
-     * @memberOf ViewState
-     */
-    protected abstract OnStoreChanged(): void;
-    /**
-     * Creates an instance of ViewState.
-     *
-     * @param {Store} store
-     *
-     * @memberOf ViewState
-     */
-    constructor(store: Store);
-    private _vmtoken$;
-    private bindStoreEvents();
-    /**
      * Returns the current state tree of your application
      *
      * @readonly
@@ -58,4 +37,7 @@ export declare abstract class ViewState {
      * @memberOf ViewState
      */
     unbind(): void;
+    protected bindStateListeners(obj: any): void;
+    private viewlisteners$;
+    private bindStateAction(storeinstance, handler);
 }

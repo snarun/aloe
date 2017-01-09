@@ -71,7 +71,7 @@ var AppCache = (function () {
             }).then(function (result) {
                 // handle result;
             }).catch(function (err) {
-                
+                console.log(err);
             });
         };
         this.pouch = require('pouchdb');

@@ -8,7 +8,7 @@ import { ViewState, State } from "./app.view.state";
  * @abstract
  * @class ComponentBase
  */
-export declare abstract class ComponentBase implements OnDestroy {
+export declare abstract class AbstractComponent implements OnDestroy {
     protected viewState: ViewState;
     private _state;
     /**

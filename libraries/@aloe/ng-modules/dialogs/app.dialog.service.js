@@ -28,7 +28,7 @@ var DialogService = (function () {
     };
     DialogService.prototype.registerAppContextModule = function (appcontext) {
         this.appContext = appcontext;
-        
+        console.log("obtained app context ", this.appContext);
     };
     // Create<t>(component: Type<t>, parameters?: Object, module: Type<{}> = AppModule): Observable<componentref<t>>
     //module: any, 
@@ -62,8 +62,8 @@ var DialogService = (function () {
             var id = '#' + _this.revealHandler;
             _this.setDialogSize(settings, id);
             $(document).foundation();
-            
-            
+            console.log("instance ==", componentRef.instance);
+            console.log("ID ==", id);
             setTimeout(function () {
                 var $instance = new Foundation.Reveal($(id), {
                     closeOnEsc: false,
@@ -73,7 +73,7 @@ var DialogService = (function () {
                 //set the dialog size.
                 //self.__$$resolvedContainer.instance.dialogSize = options.dialogSize;
             }, 15);
-            
+            console.log("8");
         });
         return componentRef$;
     };

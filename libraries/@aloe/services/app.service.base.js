@@ -51,7 +51,7 @@ var ServiceBase = (function () {
         this.options = new http_1.RequestOptions({
             withCredentials: true
         });
-        
+        console.log("@servicebase: ", this);
     }
     /**
      * Sets Cache
@@ -116,8 +116,8 @@ var ServiceBase = (function () {
             return this.__httpPost(url, payload, options);
         }
         else if (operation === HttpOperation.GET) {
-            
-            
+            console.log("calling service, ", url);
+            console.log("this at service", this);
             return this.__httpGet(url, payload);
         }
         else if (operation === HttpOperation.PUT) {
@@ -158,7 +158,7 @@ var ServiceBase = (function () {
             _this.stop();
             throw new Error("Error occured while posting the information");
         }, function () {
-            
+            console.log("operation completed..");
         });
         return __observableResponse.map(function (res) { return res.json(); }) // ...and calling .json() on the response to return data
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); }); //...errors if any
@@ -177,14 +177,14 @@ var ServiceBase = (function () {
     ServiceBase.prototype.__httpGet = function (url, payload) {
         var _this = this;
         var __observableResponse = this.http.get(url, this.options); // ...using get request
-        
+        console.log("URL --> ", url);
         this.__serviceHandle = __observableResponse.subscribe(function (x) {
             // handle the data as it comes in.
         }, function (e) {
             _this.stop();
             throw new Error("Error occured while fetching the information");
         }, function () {
-            
+            console.log("operation completed..");
         });
         return __observableResponse
             .map(function (res) { return res.json(); })
@@ -210,7 +210,7 @@ var ServiceBase = (function () {
             _this.stop();
             throw new Error("Error occured while putting the information");
         }, function () {
-            
+            console.log("operation completed..");
         });
         return __observableResponse
             .map(function (res) { return res.json(); }) // ...and calling .json() on the response to return data
@@ -235,7 +235,7 @@ var ServiceBase = (function () {
             _this.stop();
             throw new Error("Error occured > http delete operation");
         }, function () {
-            
+            console.log("operation completed..");
         });
         return __observableResponse
             .map(function (res) { return res.json(); }) // ...and calling .json() on the response to return data
@@ -268,7 +268,7 @@ var ServiceBase = (function () {
     ServiceBase.prototype.handleError = function (error) {
         var errMsg = (error.message) ? error.message :
             error.status ? error.status + " - " + error.statusText : 'Server error';
-         // log to console instead
+        console.error(errMsg); // log to console instead
         return Rx_1.Observable.throw(errMsg);
     };
     return ServiceBase;
@@ -299,7 +299,7 @@ var SPACookieXSRFStrategy = (function (_super) {
     function SPACookieXSRFStrategy(appSettings) {
         var _this = _super.call(this, appSettings.cookieName, appSettings.headerName) || this;
         _this.appSettings = appSettings;
-        
+        console.log("Injected config: ", _this.appSettings);
         _this.__cookieName = appSettings.cookieName;
         _this.__headerName = appSettings.headerName;
         return _this;

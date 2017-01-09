@@ -8,7 +8,7 @@ moment = require('moment/min/moment-with-locales.min');
  * @abstract
  * @class ComponentBase
  */
-var ComponentBase = (function () {
+var AbstractComponent = (function () {
     /**
      * @param {*} stores
      * @param {boolean} val
@@ -16,7 +16,7 @@ var ComponentBase = (function () {
      *
      * @memberOf ComponentBase
      */
-    function ComponentBase(viewState) {
+    function AbstractComponent(viewState) {
         this.viewState = viewState;
         // define state template; 
         // All views should access state data through "state.changes.propertyname"  
@@ -35,25 +35,25 @@ var ComponentBase = (function () {
      *
      * @memberOf ComponentBase
      */
-    ComponentBase.prototype.subscribeEvents = function (viewState) {
+    AbstractComponent.prototype.subscribeEvents = function (viewState) {
         var _this = this;
         // subscribe to state changes in view model.
         viewState.stateChanges.subscribe(function (x) {
-            
-            
+            console.log("state change received at component base..", x);
+            console.log("this._state ==>", _this._state);
             _this._state.next({
                 changes: x
             });
         });
     };
-    Object.defineProperty(ComponentBase.prototype, "state", {
+    Object.defineProperty(AbstractComponent.prototype, "state", {
         get: function () {
             return this._state;
         },
         enumerable: true,
         configurable: true
     });
-    ComponentBase.prototype.ngOnDestroy = function () {
+    AbstractComponent.prototype.ngOnDestroy = function () {
         // release viewState events
         this.viewState.unbind();
         // release derived class events, if any;
@@ -65,7 +65,7 @@ var ComponentBase = (function () {
      *
      * @memberOf ComponentBase
      */
-    ComponentBase.prototype.standby = function () {
+    AbstractComponent.prototype.standby = function () {
         this.loading = true;
     };
     /**
@@ -74,10 +74,10 @@ var ComponentBase = (function () {
      *
      * @memberOf ComponentBase
      */
-    ComponentBase.prototype.ready = function () {
+    AbstractComponent.prototype.ready = function () {
         this.loading = false;
     };
-    return ComponentBase;
+    return AbstractComponent;
 }());
-exports.ComponentBase = ComponentBase;
+exports.AbstractComponent = AbstractComponent;
 //# sourceMappingURL=app.component.base.js.map

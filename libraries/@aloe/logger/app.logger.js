@@ -68,13 +68,13 @@ Logger.remote_url = '';
 Logger.logger = function (value, level, remoteURL, shouldLogRemotely) {
     if (!shouldLogRemotely) {
         if ((level === LogLevel.CRITICAL) || (level === LogLevel.ERROR)) {
-            
+            console.error(value);
         }
         else if (level === LogLevel.INFO) {
             console.info(value);
         }
         else if (level === LogLevel.WARN) {
-            
+            console.warn(value);
         }
     }
     else {
